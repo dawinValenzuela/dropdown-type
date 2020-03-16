@@ -1,24 +1,27 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { TextInput } from '@contentful/forma-36-react-components';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
 import '@contentful/forma-36-react-components/dist/styles.css';
 import './index.css';
 
+import { Items } from './Dropdown/data';
 import { Dropdown } from './Dropdown';
+
 interface AppProps {
   sdk: FieldExtensionSDK;
 }
 
 interface AppState {
   value?: string;
+  dropdownType?: string;
 }
 
 export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      value: props.sdk.field.getValue() || ''
+      value: props.sdk.field.getValue() || '',
+      dropdownType: props.sdk.parameters.instance.dropdownType
     };
   }
 
@@ -52,7 +55,9 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   render = () => {
-    return <Dropdown />;
+    const items = Items[this.state.dropdownType];
+
+    return <Dropdown data={items} />;
   };
 }
 

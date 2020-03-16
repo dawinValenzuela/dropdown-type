@@ -2,7 +2,15 @@
   "id": "dropdown-type",
   "name": "dropdown-type",
   "srcdoc": "./build/index.html",
-  "fieldTypes": [
-    "Text"
-  ]
+  "fieldTypes": ["Text"],
+  "parameters": {
+    "instance": [
+      {
+        "id": "dropdownType",
+        "type": "Symbol",
+        "name": "Type",
+        "description": "dropdown type"
+      }
+    ]
+  }
 }

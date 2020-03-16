@@ -64,11 +64,16 @@ const ItemBody = styled.div`
   flex: 1;
 `;
 
+const ItemSelected = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+`;
+
 const Button = styled.button`
   border: 1px solid #d3dce0;
   outline: none;
   background-color: #fff;
-  max-height: 2.5rem;
   width: 100%;
   padding: 8px;
   font-size: 0.875rem;
@@ -78,7 +83,9 @@ const Button = styled.button`
   justify-content: space-between;
 `;
 
-export const Dropdown = () => {
+export const Dropdown = props => {
+  const items = props.data;
+
   const {
     isOpen,
     selectedItem,
@@ -89,10 +96,20 @@ export const Dropdown = () => {
     getItemProps
   } = useSelect({ items });
 
+  console.log(props.data);
+
   return (
     <Container>
       <Button {...getToggleButtonProps()}>
-        {selectedItem || 'Select an item'}
+        {(selectedItem && (
+          <>
+            <ItemSelected>
+              <Image src={selectedItem.image} alt="Hero 1 type" />
+              {selectedItem.value}
+            </ItemSelected>
+          </>
+        )) ||
+          'Select an item'}
         <svg
           height="20"
           width="20"
