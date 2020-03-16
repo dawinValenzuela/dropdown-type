@@ -5,6 +5,7 @@ import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
 import '@contentful/forma-36-react-components/dist/styles.css';
 import './index.css';
 
+import { Dropdown } from './Dropdown';
 interface AppProps {
   sdk: FieldExtensionSDK;
 }
@@ -51,16 +52,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   render = () => {
-    return (
-      <TextInput
-        width="large"
-        type="text"
-        id="my-field"
-        testId="my-field"
-        value={this.state.value}
-        onChange={this.onChange}
-      />
-    );
+    return <Dropdown />;
   };
 }
 
