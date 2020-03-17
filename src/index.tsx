@@ -44,20 +44,18 @@ export class App extends React.Component<AppProps, AppState> {
     this.setState({ value });
   };
 
-  onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
+  onChange = (value: string) => {
     this.setState({ value });
     if (value) {
-      await this.props.sdk.field.setValue(value);
+      this.props.sdk.field.setValue(value);
     } else {
-      await this.props.sdk.field.removeValue();
+      this.props.sdk.field.removeValue();
     }
   };
 
   render = () => {
     const items = Items[this.state.dropdownType];
-
-    return <Dropdown data={items} />;
+    return <Dropdown items={items} onChange={this.onChange} valueSelected={this.state.value} />;
   };
 }
 
